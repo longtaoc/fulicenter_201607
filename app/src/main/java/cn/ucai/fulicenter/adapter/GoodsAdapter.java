@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
@@ -14,8 +15,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.activity.GoodsDetailActivity;
 import cn.ucai.fulicenter.bean.NewGoodsBean;
 import cn.ucai.fulicenter.utils.ImageLoader;
 
@@ -63,9 +66,10 @@ public class GoodsAdapter extends Adapter {
         }else {
             GoodsViewHolder vh= (GoodsViewHolder) holder;
             NewGoodsBean goods = mList.get(position);
-            ImageLoader.downloadImg(mContext,vh.ivGoodsThumb,goods.getGoodsThumb());
-            vh.tvGoodsName.setText(goods.getGoodsName());
-            vh.tvGoodsPrice.setText(goods.getCurrencyPrice());
+            ImageLoader.downloadImg(mContext,vh.mIvGoodsThumb,goods.getGoodsThumb());
+            vh.mTvGoodsName.setText(goods.getGoodsName());
+            vh.mTvGoodsPrice.setText(goods.getCurrencyPrice());
+            vh.mLayoutGoods.setTag(goods.getGoodsId());
         }
 
     }
@@ -100,19 +104,25 @@ public class GoodsAdapter extends Adapter {
     }
 
 
-    static class GoodsViewHolder extends ViewHolder{
+    class GoodsViewHolder extends ViewHolder{
         @BindView(R.id.ivGoodsThumb)
-        ImageView ivGoodsThumb;
+        ImageView mIvGoodsThumb;
         @BindView(R.id.tvGoodsName)
-        TextView tvGoodsName;
+        TextView mTvGoodsName;
         @BindView(R.id.tvGoodsPrice)
-        TextView tvGoodsPrice;
+        TextView mTvGoodsPrice;
         @BindView(R.id.layout_goods)
-        LinearLayout layoutGoods;
+        LinearLayout mLayoutGoods;
 
         GoodsViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+        @OnClick(R.id.layout_goods)
+        public void onGoodsItemClick(){
+            int goodsId= (int) mLayoutGoods.getTag();
+            mContext.startActivity(new Intent(mContext, GoodsDetailActivity.class)
+                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
         }
     }
 
