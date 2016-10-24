@@ -25,6 +25,7 @@ import cn.ucai.fulicenter.net.OkHttpUtils;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ConvertUtils;
 import cn.ucai.fulicenter.utils.L;
+import cn.ucai.fulicenter.view.SpaceItemDecoration;
 
 /**
  * Created by Administrator on 2016/10/23.
@@ -148,5 +149,6 @@ public class NewGoodsFragment extends Fragment {
         mRv.setLayoutManager(glm);
         mRv.setHasFixedSize(true);
         mRv.setAdapter(mAdapter);
+        mRv.addItemDecoration(new SpaceItemDecoration(12));
     }
 }
