@@ -3,7 +3,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  android:background="@color/list_background">
+    android:background="@color/list_background">
 
     <LinearLayout
         android:id="@+id/main_botton"
@@ -13,13 +13,11 @@
         android:background="@color/bottom_bar_taobao_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
         <RadioGroup
             android:id="@+id/rg_botton_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <RadioButton
                 android:id="@+id/layout_new_good"
                 android:drawableTop="@drawable/selector_menu_item_new_good"
@@ -28,7 +26,6 @@
                 android:button="@null"
                 android:textColor="@color/main_botton_text_color"
                 android:checked="true"/>
-
             <RadioButton
                android:id="@+id/layout_boutique"
                 android:drawableTop="@drawable/selector_menu_item_boutique"
@@ -75,10 +72,8 @@
                         android:paddingLeft="50dp"
                         android:textColor="#fff"
                         android:textSize="12dp"/>
-
                 </LinearLayout>
             </RelativeLayout>
-
             <RadioButton
                 android:id="@+id/layout_personal_center"
                 android:drawableTop="@drawable/selector_menu_item_personal_center"
@@ -87,7 +82,6 @@
                 android:textColor="@color/main_botton_text_color"
                 android:text="我"
                 android:checked="false"/>
-
         </RadioGroup>
     </LinearLayout>
     <View
@@ -96,11 +90,11 @@
         android:layout_height="1px"
         android:layout_above="@+id/main_botton"
         android:background="#D6DCDC"/>
-
-<RelativeLayout
-    android:id="@+id/fragment_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="1dp"
-    android:layout_above="@+id/vline"/>
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:layout_above="@+id/vline">
+    </RelativeLayout>
 </RelativeLayout>

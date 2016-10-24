@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,9 +26,10 @@ public class GoodsAdapter extends Adapter {
     Context mContext;
     List<NewGoodsBean> mList;
 
-    public GoodsAdapter(Context mContext, List<NewGoodsBean> mList) {
-        this.mContext = mContext;
-        this.mList = mList;
+    public GoodsAdapter(Context Context, List<NewGoodsBean> list) {
+        mContext = Context;
+        mList = new ArrayList<>();
+        mList.addAll(list);
     }
 
     @Override
@@ -66,6 +68,14 @@ public class GoodsAdapter extends Adapter {
             return I.TYPE_FOOTER;
         }
         return I.TYPE_ITEM;
+    }
+
+    public void initData(ArrayList<NewGoodsBean> list) {
+        if (mList!=null){
+            mList.clear();
+        }
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     static class GoodsViewHolder extends ViewHolder{
