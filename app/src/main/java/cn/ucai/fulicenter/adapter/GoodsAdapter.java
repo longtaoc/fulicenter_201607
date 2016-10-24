@@ -94,6 +94,10 @@ public class GoodsAdapter extends Adapter {
         notifyDataSetChanged();
     }
 
+    public void addData(ArrayList<NewGoodsBean> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
 
 
     static class GoodsViewHolder extends ViewHolder{
