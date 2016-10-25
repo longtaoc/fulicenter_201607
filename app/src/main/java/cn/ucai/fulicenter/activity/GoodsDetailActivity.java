@@ -72,7 +72,6 @@ public class GoodsDetailActivity extends AppCompatActivity {
                     finish();
                 }
             }
-
             private void showGoodDetails(GoodsDetailsBean details) {
                 mTvGoodNameEnglish.setText(details.getGoodsEnglishName());
                 mTvGoodName.setText(details.getGoodsName());
@@ -80,7 +79,6 @@ public class GoodsDetailActivity extends AppCompatActivity {
                 mTvGoodPriceShop.setText(details.getShopPrice());
 
             }
-
             @Override
             public void onError(String error) {
                 finish();
@@ -91,7 +89,6 @@ public class GoodsDetailActivity extends AppCompatActivity {
         });
 
     }
-
     private void initView() {
 
     }
