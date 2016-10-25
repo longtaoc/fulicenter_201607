@@ -13,7 +13,8 @@ public class GoodsDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_detail);
-        int goodsID=getIntent().getIntExtra(I.GoodsDetails.KEY_GOODS_ID,0);
+        int goodsID = getIntent().getIntExtra(I.GoodsDetails.KEY_GOODS_ID,0);
         L.e("details","goodsid"+goodsID);
+
     }
 }
