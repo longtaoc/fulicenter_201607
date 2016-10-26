@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.activity.MainActivity;
 import cn.ucai.fulicenter.adapter.BoutiqueAdapter;
@@ -42,6 +41,7 @@ public class BoutiqueFragment extends Fragment {
     MainActivity mContext;
     BoutiqueAdapter mAdapter;
     ArrayList<BoutiqueBean> mList;
+    //int pageId=1;
 
     @Nullable
     @Override
@@ -49,45 +49,50 @@ public class BoutiqueFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_newgoods, container, false);
         ButterKnife.bind(this, layout);
         mContext= (MainActivity) getContext();
+        mList = new ArrayList<>();
         mAdapter= new BoutiqueAdapter(mContext,mList);
         initView();
         initData();
+        setListener();
         return layout;
+    }
+    private void setListener() {
+        setPullDownListener();
+    }
+    private void setPullDownListener() {
+        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSrl.setRefreshing(true);
+                mTvRefresh.setVisibility(View.VISIBLE);
+                //pageId=1;
+                downloadBoutique();
+            }
+        });
     }
 
     private void initData() {
-        downloadBoutique(I.ACTION_DOWNLOAD);
+        downloadBoutique();
     }
 
-    private void downloadBoutique(final int action) {
+    private void downloadBoutique() {
         NetDao.downloadBoutique(mContext, new OkHttpUtils.OnCompleteListener<BoutiqueBean[]>() {
             @Override
             public void onSuccess(BoutiqueBean[] result) {
 
                 mSrl.setRefreshing(false);
                 mTvRefresh.setVisibility(View.GONE);
-                mAdapter.setMore(true);
                 L.e("result= "+result.length);
                 if (result!=null && result.length>0){
                     ArrayList<BoutiqueBean> list= ConvertUtils.array2List(result);
-                    if (action== I.ACTION_DOWNLOAD || action==I.ACTION_PULL_DOWN) {
                         L.e("list=" + list.size());
                         mAdapter.initData(list);
-                    }else {
-                        mAdapter.addData(list);
-                    }
-                    if (list.size()<I.PAGE_SIZE_DEFAULT){
-                        mAdapter.setMore(false);
-                    }
-                }else {
-                    mAdapter.setMore(false);
                 }
             }
             @Override
             public void onError(String error) {
                 mSrl.setRefreshing(false);
                 mTvRefresh.setVisibility(View.GONE);
-                mAdapter.setMore(false);
                 CommonUtils.showLongToast(error);
                 L.e("error"+error);
             }

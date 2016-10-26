@@ -43,8 +43,6 @@ public class NewGoodsFragment extends Fragment {
     ArrayList<NewGoodsBean> mList;
     int pageId=1;
     GridLayoutManager glm;
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,12 +56,10 @@ public class NewGoodsFragment extends Fragment {
         setListener();
         return layout;
     }
-
     private void setListener() {
         setPullUpListener();
         setPullDownListener();
     }
-
     private void setPullDownListener() {
         mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -75,7 +71,6 @@ public class NewGoodsFragment extends Fragment {
             }
         });
     }
-
     private void downlaodNewGoods(final int action) {
         NetDao.downloadNewGoods(mContext, pageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
