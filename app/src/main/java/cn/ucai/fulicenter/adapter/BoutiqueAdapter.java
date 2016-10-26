@@ -60,8 +60,6 @@ public class BoutiqueAdapter extends Adapter {
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (holder instanceof FooterViewHolder) {
             ((FooterViewHolder) holder).tvFooter.setText(getFooterString());
-
-
         }
         if (holder instanceof BoutiqueViewHolder) {
             BoutiqueBean boutiqueBean = mList.get(position);
@@ -90,9 +88,6 @@ public class BoutiqueAdapter extends Adapter {
         }
         return I.TYPE_ITEM;
     }
-
-
-
     class BoutiqueViewHolder extends ViewHolder{
         @BindView(R.id.ivBoutiqueImg)
         ImageView mTvBoutiqueImg;
