@@ -46,6 +46,7 @@ public class NewGoodsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        L.e("NewGoodsFragment.onCreateView");
         View layout = inflater.inflate(R.layout.fragment_newgoods, container, false);
         ButterKnife.bind(this, layout);
         mContext= (MainActivity) getContext();
@@ -56,6 +57,8 @@ public class NewGoodsFragment extends Fragment {
         setListener();
         return layout;
     }
+
+
     private void setListener() {
         setPullUpListener();
         setPullDownListener();
